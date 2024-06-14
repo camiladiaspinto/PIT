@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Visualização de Dados</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI';
+        }
+
+        body {
+            animation: fadeBackground 5s ease-in-out infinite alternate;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        @keyframes fadeBackground {
+            0% {
+                background-color: rgb(192, 201, 200); /* Cor de fundo inicial */
+            }
+            25% {
+                background-color: rgb(192, 201, 255); /* Cor intermediária */
+            }
+            50% {
+                background-color: rgb(192, 205, 255); /* Cor intermediária */
+            }
+            75% {
+                background-color: rgb(192, 201, 255); /* Cor intermediária */
+            }
+            100% {
+                background-color: rgb(192, 201, 200); /* Cor de fundo final */
+            }
+        }
+
+        h1 {
+            margin-top: 92.5px;
+            font-size: 36px;
+            color: rgb(115, 124, 255);
+        }
+
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+            max-width: 100%;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #5d5d5d;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        td {
+            text-align: left;
+        }
+
+        /* Estilo do botão */
+        .add-device-button {
+            position: absolute;
+            top: 90px;
+            left: 147px;
+            font-weight: bold;
+            text-decoration:dashed;
+            margin-top: 10px;
+            padding: 10px 30px;
+            font-size: 13px;
+            border: 0;
+            border-radius: 10px;
+            background-color: rgb(255, 255, 255);
+            color: #5e9dd7;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-device-button:hover {
+            background-color: #000000;
+        }
+
+        .selection-box {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .selection-box select {
+            padding: 5px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+        }
+
+        .container {
+            top: 0;
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+        }
+
+        .menu {
+            position: fixed;
+            top: 0;
+            background: #1b1b1b;
+            width: 100%;
+            padding: 10px 0;
+            z-index: 12;
+        }
+
+        .menu .menu-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1250px;
+            margin: auto;
+            padding: 0 20px;
+            font-family: 'Segoe UI';
+            box-sizing: border-box;
+        }
+
+        .logo a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 35px;
+            font-weight: 600;
+        }
+
+        .menu ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .menu ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .menu ul li a:hover {
+            background: #fff;
+            color: black;
+        }
+
+    </style>
+</head>
+
+<body>
+  <h1>Valores dos Sensores em Tempo Real</h1>
+
+  <a href="/templates/página_gráficos.html">Visitar histórico de valores</a>
+
+  <!-- Botão "Adicionar Dispositivo" -->
+  <a href="/templates/registar_id.html" class="add-device-button">Adicionar Dispositivo</a>
+
+  <!-- Botão "Log-out" -->
+  <div class="menu">
+    <div class="menu-content">
+        <div class="logo">
+            <a href="paginicial.html">PIT</a>
+        </div>
+        <ul>
+            <li><a id="logout-button" href="paginicial.html">Logout</a></li>
+        </ul>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>TimeStamp</th>
+        <th>Temperatura</th>
+        <th>Humidade</th>
+        <th>Movimento</th>
+        <th>Luminosidade</th>
+        <th>ID Selecionado</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody">
+    </tbody>
+  </table>
+
+  <div class="selection-box">
+    <label for="selectID">Selecione o sistema que pretende visualizar:</label>
+    <select id="selectID" onchange="fetchAmostraData()">
+      <!-- Opções de ID -->
+    </select>
+  </div>
+
+  <script>
+    // Função para atualizar a tabela HTML com os valores da tabela da base de dados
+    function updateTableWithAmostraData(data) {
+        if (!data) {
+            console.log('Nenhum dado encontrado');
+            return;
+        }
+
+        const tableBody = document.getElementById("tableBody");
+        tableBody.innerHTML = '';
+
+        const newRow = document.createElement("tr");
+        for (const key in data) {
+            const cell = document.createElement("td");
+            cell.textContent = data[key];
+            newRow.appendChild(cell);
+        }
+        tableBody.appendChild(newRow);
+    }
+  </script>
+  <script src="/templates/index.js"></script>
+  <script>fetchIDsUtilizador()</script>
+</body>
+</html>

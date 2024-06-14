@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seleção de ID</title>
+  <style>
+    body {
+      animation: fadeBackground 5s ease-in-out infinite alternate;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 20px;
+    }
+
+    @keyframes fadeBackground {
+      0% {
+        background-color: rgb(192, 201, 200); /* Cor de fundo inicial */
+      }
+      25% {
+        background-color: rgb(192, 201, 255); /* Cor intermediária */
+      }
+      50% {
+        background-color: rgb(192, 205, 255); /* Cor intermediária */
+      }
+      75% {
+        background-color: rgb(192, 201, 255); /* Cor intermediária */
+      }
+      100% {
+        background-color: rgb(192, 201, 200); /* Cor de fundo final */
+      }
+    }
+
+    h1 {
+      margin-top: 0;
+      text-align: center;
+      font-family: 'Roboto Slab', serif;
+      font-size: 36px;
+      color: rgb(115, 124, 255);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+      font-family: 'Roboto Slab', serif;
+      font-size: 18px;
+    }
+
+    label {
+      margin-bottom: 10px;
+    }
+
+    input[type="text"] {
+      padding: 5px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    button[type="submit"],
+    button[type="reset"] {
+      margin-top: 10px;
+      padding: 10px 30px;
+      font-size: 13px;
+      border: 0;
+      border-radius: 10px;
+      background-color: rgb(255, 255, 255);
+      color: #5e9dd7;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button[type="submit"]:hover,
+    button[type="reset"]:hover {
+      background-color: #eaf2ff;
+    }
+
+    .tables {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+    .tables div {
+        width: 45%;
+        margin: 0 10px;
+    }
+
+    .tables h3 {
+        margin-bottom: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .tables table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+
+    .tables table th {
+        background-color: #f2f2f2;
+        padding: 10px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .tables table td {
+        padding: 10px;
+        text-align: center;
+    }
+
+    .voltar-button {
+            position: fixed;
+            top: 16px;
+            left: 40px;
+            margin-top: 10px;
+            padding: 10px 30px;
+            font-size: 13px;
+            border: 0;
+            border-radius: 10px;
+            background-color: rgb(255, 255, 255);
+            color: #5e9dd7;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .voltar-button:hover {
+            background-color: #eaf2ff;
+        }
+
+  </style>
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <h1>Seleção de ID</h1>
+  
+  <form id="myForm" method="post">
+    <label for="textInput">Selecione um dos ID abaixo:</label>
+    <input type="text" id="id_disp" name="texto" required pattern="[0-9]+" placeholder="Digite um ID" title="Apenas números são permitidos" style="padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 5px;" pattern="[0-9]+" required>
+    <span id="mensagem-erro" style="color: red; font-size: 12px;"></span>
+    <div>
+      <button id="submit-button" type="submit">Submit</button>
+      <button type="reset">Reset</button>
+    </div>
+  </form>
+
+<div class="tables">
+    <div>
+      <h3>Sistemas Sensores</h3>
+      <table id="ss-disponivel">
+          <tr>
+              <th>IDs disponíveis</th>
+          </tr>
+      </table>
+    </div>
+</div>
+
+<button class="voltar-button" onclick="voltarPagina()">Voltar</button>
+<script>
+function voltarPagina() {
+  window.location.href = "página_do_user.html";
+}
+</script>
+
+  <script src="/templates/index.js"></script>
+
+  <script>
+    fetchSSID_disp()
+  </script>
+
+<script>
+  verificar_id()
+</script>
+
+
+</body>
+</html>

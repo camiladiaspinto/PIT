@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <style> 
+        body{
+            width: 100%;
+            height: 100vh;
+            background-image: url(imagens/2.png);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container{
+            max-width: 550px;
+            margin: 400px;
+            padding: 0 4%;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            max-width: 400px;
+            min-width: 300px;
+            padding: 30px;
+            border-radius: 20px;
+        }
+
+        .form-container h1{
+            text-align: center;
+            font-size: 30px;
+            color: rgb(49, 114, 198)
+        }
+
+        .Email,
+        .Password,
+        .Reset,
+        .submit,
+        .RegisterLink {
+            padding: 10px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .input{
+            width: 100%;
+            border: 0;
+            border-bottom: 2px solid #cccccc;
+            padding: 5px;
+            font-size: 17px;
+            outline: none;
+        }
+
+        .Reset{
+            position:relative;
+            bottom: 19px;
+            width: 104%;
+            text-align: right;
+        }
+
+        .Reset input[type="Reset"]{
+            padding: 10px 30px;
+            font-size: 13px;
+            border: 0;
+            border-radius: 10px;
+            background-color: rgb(255, 255, 255);
+            color:#5e9dd7;
+            cursor: pointer;
+        }    
+        .submit{
+            position:relative;
+            top: -35px;
+            width: 95%;
+            text-align: center;
+        }
+
+        .submit input[type="submit"]{
+            padding: 11px 32px;
+            font-size: 16px;
+            border: 0;
+            border-radius: 10px;
+            background-color: rgb(98, 175, 230);
+            color: #fff;
+            cursor: pointer;;
+        }      
+
+    </style>
+</head>
+<body>
+    <section class="submit" id="submit">
+        <div class="container">
+            <a href="/templates/paginicial.html" class="back-link">&#8592; Voltar</a>
+            <div class="form-container">
+                <h1>Login</h1>
+                <div class="Email">
+                    <label for="name">Email</label>
+                    <input type="email" name="email" id="email" class="input" placeholder="ex:12345@gmail.com" required>
+                </div>
+
+                <div class="Password">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" class="input" placeholder="Utilize pelo menos 8 caracteres" required>
+                </div>
+
+                <div class="Reset">
+                    <input type="reset" value="Reset" onclick="resetButtonClick(event)">
+                </div>
+                
+                <div class="submit">
+                    <input type="submit" id="submit-button" value="Submit" onclick="submitButtonClick(event)">
+                </div>
+                <div class="RegisterLink">
+                    <a href="/templates/registar.html">Não possui uma conta? Registe-se aqui</a>
+                </div>
+                <div id="message"></div>
+            </div>
+        </div>
+    </section>
+    <script>
+        function submitButtonClick(event) {
+            var button = event.target;
+            button.style.backgroundColor = 'gray';
+
+            setTimeout(function() {
+                button.style.backgroundColor = 'rgb(98, 175, 230)';
+            }, 300);
+        }
+
+        function resetButtonClick(event) {
+            var button = event.target;
+            button.style.color = 'black';
+
+            setTimeout(function() {
+                button.style.color = '#5e9dd7';
+            }, 300);
+        }
+    </script>
+    <script src="index.js"></script>
+</body>
+</html>
